@@ -1,8 +1,10 @@
 {
   "name": "meeting-room-booking-system",
+  "homepage": "https://safr0.github.io/Calendar-App",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {    
+  "dependencies": {
+    "gh-pages": "^6.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -13,15 +15,17 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "enzyme": "^3.11.0",
-    "jest": "26.6.0",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0"
+    "jest": "26.6.0"
   },
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    "build": "react-scripts build",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "set NODE_OPTIONS=--openssl-legacy-provider && npm run build",
+    "deploy": "set NODE_OPTIONS=--openssl-legacy-provider && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -40,5 +44,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }  
+  }
 }
