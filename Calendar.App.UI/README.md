@@ -1,1 +1,19 @@
-# tal-calendar-app
+# calendar-app
+
+## Description
+This is a sample Calendar App with React frontend demonstration purposes only sharing. 
+
+GitHub repositor code is running application through the github pages. 
+
+## Repository
+GitHub Repository: [Calendar App Project](https://github.com/safr0/Calendar-App)
+
+## Live Application
+You can view the running application here: [Live Calendar Application](https://safr0.github.io/Calendar-App)
+
+## Installation
+1. Clone the repository
+   ```bash
+   git clone https://github.com/safr0/Calendar-App.git
+
+<!-- TODO add readme sections  -->
