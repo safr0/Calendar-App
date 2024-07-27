@@ -3,7 +3,7 @@
 ## Description
 This is a sample Calendar App with React frontend demonstration purposes only sharing. 
 
-GitHub repositor code is running application through the github pages. 
+GitHub repository code is running application through the github pages. 
 
 ## Repository
 GitHub Repository: [Calendar App Project](https://github.com/safr0/Calendar-App)
