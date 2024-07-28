@@ -1,7 +1,7 @@
 import './App.css';
 
 // Components
-import TimeSlots from './components/molecules/TimeSlots'
+import TimeSlots from './components/TimeSlots'
 
 function App() {
     return (

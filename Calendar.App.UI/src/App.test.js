@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import TimeSlots from './components/molecules/TimeSlots'
+import TimeSlots from './components/TimeSlots'
 
 test('Component matches snapshot', () => {
     const component = renderer.create(

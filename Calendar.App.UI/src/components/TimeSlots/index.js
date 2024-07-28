@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { CreateTimeSlots, SetBookingSlotsAsUnavailable } from './timeSlotUtils';
 
 class TimeSlots extends React.Component {
     constructor() {
@@ -12,87 +13,14 @@ class TimeSlots extends React.Component {
 
         this.state = {
             updateState: true,
-            bookingSlots: this.CreateTimeSlots(bookingOpeningTime, bookingClosingTime, hourSplitAmount),
+            bookingSlots: CreateTimeSlots(bookingOpeningTime, bookingClosingTime, hourSplitAmount),
             selectedSlots: [],
             bookedSlots: [],
         }
 
-        this.setState({bookingSlots: this.SetBookingSlotsAsUnavailable(this.state.bookingSlots, initialBookedSlotTimes)})
+        this.setState({bookingSlots: SetBookingSlotsAsUnavailable(this.state.bookingSlots, initialBookedSlotTimes)})
     }
-
-    // hourSplitAmount; 1=hour 2=half hour, 4=15 minutes
-    CreateTimeSlots (startTime, endTime, hourSplitAmount = 1) {
-        const timeSlotQty = endTime - startTime
-        let bookingSlots = []
-        let index = 0
-
-        for (let i=startTime; i<startTime+timeSlotQty; i++) {
-            const increment = this.HourSplitIncrement(hourSplitAmount)
-            let currentTimeSlotMinutes = 0
-
-            for (let j=0; j<hourSplitAmount; j++){
-                bookingSlots.push(this.CreateTimeSlot(
-                    index,
-                    this.GetFormattedTime(i, currentTimeSlotMinutes), 
-                    this.GetFormattedTime(i, currentTimeSlotMinutes + increment), 
-                    "available"))
-                currentTimeSlotMinutes = currentTimeSlotMinutes + increment
-                index = index + 1
-            }
-        }
-        return bookingSlots
-    }
-
-    CreateTimeSlot (slotId, startTime, endTime, bookingStatus) {
-        let slot = {
-            slotId: slotId,
-            startTime: startTime,
-            endTime: endTime,
-            bookingStatus: bookingStatus,
-        }
-        return slot
-    }
-
-    HourSplitIncrement (hourSplitAmount) {
-        let increment = 0
-
-        switch(hourSplitAmount) {
-            case 1:
-                increment = 60
-                break
-            case 2:
-                increment = 30
-                break
-            case 4:
-                increment = 15
-                break
-            default:
-                increment = 60
-        }
-        return increment
-    }
-
-    GetFormattedTime (hour, minute) {
-        let outputHour = hour
-        let outputMinute = minute
-        if (outputMinute === 60) {
-            outputHour = outputHour + 1
-            outputMinute = 0
-        }
-
-        return `${outputHour}:${outputMinute.toLocaleString('en-AU', {minimumIntegerDigits: 2, useGrouping:false})}`
-    }
-
-    SetBookingSlotsAsUnavailable (bookingSlots, initialSlots) {
-        return bookingSlots.map(slot => {
-            let newSlot = slot
-            if (initialSlots.includes(newSlot.startTime)) {
-                newSlot.bookingStatus = "unavailable"
-            }
-            return newSlot
-        })
-    }
-
+    
     HandleSelectionClick (object) {
         this.setState({updateState: true})
         if (object.bookingStatus === "unavailable" || object.bookingStatus === "booked") {
