@@ -1,5 +1,6 @@
 // @flow
 
+
 // hourSplitAmount; 1=hour 2=half hour, 4=15 minutes
 export function CreateTimeSlots (startTime, endTime, hourSplitAmount = 1) {
     const timeSlotQty = endTime - startTime
@@ -19,7 +20,7 @@ export function CreateTimeSlots (startTime, endTime, hourSplitAmount = 1) {
             currentTimeSlotMinutes = currentTimeSlotMinutes + increment
             index = index + 1
         }
-    }
+    }        
     return bookingSlots
 }
 
@@ -66,12 +67,15 @@ function GetFormattedTime (hour, minute) {
     return `${outputHour}:${outputMinute.toLocaleString('en-AU', {minimumIntegerDigits: 2, useGrouping:false})}`
 }
 
-export function SetBookingSlotsAsUnavailable (bookingSlots, initialSlots) {
-    return bookingSlots.map(slot => {
-        let newSlot = slot
-        if (initialSlots.includes(newSlot.startTime)) {
-            newSlot.bookingStatus = "unavailable"
-        }
-        return newSlot
-    })
-}
+// export function SetBookingSlotsAsUnavailable (bookingSlots, initialSlots) {
+//     return bookingSlots.map(slot => {
+//         debugger
+//         let newSlot = slot
+//         console.log('newSlot:', newSlot);
+//         if (slot && initialSlots.includes(newSlot.startTime)) {
+//             newSlot.bookingStatus = "unavailable"
+//         }
+        
+//         return newSlot
+//     })
+// }
