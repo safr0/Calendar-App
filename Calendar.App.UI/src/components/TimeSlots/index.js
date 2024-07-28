@@ -11,6 +11,9 @@ class TimeSlots extends React.Component {
 
         super()
 
+        //debugger
+        //console.log('Initial bookedSlotTimes:', initialBookedSlotTimes);
+
         this.state = {
             updateState: true,
             bookingSlots: CreateTimeSlots(bookingOpeningTime, bookingClosingTime, hourSplitAmount),
@@ -18,9 +21,9 @@ class TimeSlots extends React.Component {
             bookedSlots: [],
         }
 
-        this.setState({bookingSlots: SetBookingSlotsAsUnavailable(this.state.bookingSlots, initialBookedSlotTimes)})
+        this.setState({bookingSlots: SetBookingSlotsAsUnavailable(this.state.bookingSlots, initialBookedSlotTimes)})                
     }
-    
+
     HandleSelectionClick (object) {
         this.setState({updateState: true})
         if (object.bookingStatus === "unavailable" || object.bookingStatus === "booked") {
@@ -79,9 +82,9 @@ class TimeSlots extends React.Component {
             bookedSlots: this.state.bookedSlots.filter(bookedSlot => slotArray !== bookedSlot )
         })
     }
-
+    
     render() {
-        return (
+        return (            
             <React.Fragment>
                 {this.state.selectedSlots.length > 0 &&
                     <div className={"selectionWrapper"}> 
