@@ -67,15 +67,12 @@ function GetFormattedTime (hour, minute) {
     return `${outputHour}:${outputMinute.toLocaleString('en-AU', {minimumIntegerDigits: 2, useGrouping:false})}`
 }
 
-// export function SetBookingSlotsAsUnavailable (bookingSlots, initialSlots) {
-//     return bookingSlots.map(slot => {
-//         debugger
-//         let newSlot = slot
-//         console.log('newSlot:', newSlot);
-//         if (slot && initialSlots.includes(newSlot.startTime)) {
-//             newSlot.bookingStatus = "unavailable"
-//         }
-        
-//         return newSlot
-//     })
-// }
+export function SetBookingSlotsAsUnavailable (bookingSlots, initialSlots) {
+    return bookingSlots.map(slot => {        
+        let newSlot = slot        
+        if (slot && initialSlots.includes(newSlot.startTime)) {
+            newSlot.bookingStatus = "unavailable"
+        }        
+        return newSlot
+    })
+}
